@@ -1,0 +1,28 @@
+﻿body {
+    font-family: 'Sans Serif Collection';
+    background-color: cadetblue;
+    color: gainsboro;
+}
+a {
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+}
+a:hover{
+    font-size:1.5em;
+    text-shadow: 1px 1px 10px cornflowerblue;
+    border-radius: 10px;
+    text-decoration: none;
+    color: cornflowerblue;
+}
+.nav-link:hover {
+    color: cadetblue;
+    background-color: white;
+    text-decoration: none;
+    border-radius:10px;
+}
+.nav-link{
+    color: cadetblue !important;
+    font-size:1.3em;
+}
+
