@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using TermProject.Data;
+using TermProject.Models;
 
 namespace TermProject
 {
@@ -18,6 +19,11 @@ namespace TermProject
 
             builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            builder.Services.AddDbContext<CookieContext>(options =>
+                options.UseSqlServer(connectionString));
+
+
             builder.Services.AddControllersWithViews();
 
             var app = builder.Build();
