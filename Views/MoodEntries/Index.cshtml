@@ -1,13 +1,12 @@
-﻿@model IEnumerable<TermProject.Models.Members>
+﻿@model IEnumerable<TermProject.Models.MoodEntry>
 
 @{
-    ViewData["Title"] = "Members";
+    ViewData["Title"] = "Index";
 }
 <link rel="stylesheet" href="~/css/style.css" asp-append-version="true" />
 <div class="p-4 mb-4 shadow" style="background-color:#7aaecd;border-radius:20px;">
-    <h1>Members</h1>
+    <h1>Entries</h1>
 </div>
-
 <p>
     <a asp-action="Create">Create New</a>
 </p>
@@ -15,34 +14,34 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.FirstName)
+                @Html.DisplayNameFor(model => model.EntryDate)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.LastName)
+                @Html.DisplayNameFor(model => model.Mood)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Email)
+                @Html.DisplayNameFor(model => model.Notes)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Cell)
+                @Html.DisplayNameFor(model => model.Members)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
-        <tr >
+        <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.FirstName)
+                @Html.DisplayFor(modelItem => item.EntryDate)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.LastName)
+                @Html.DisplayFor(modelItem => item.Mood)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Email)
+                @Html.DisplayFor(modelItem => item.Notes)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Cell)
+                @Html.DisplayFor(modelItem => item.Members.Email)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |

@@ -24,5 +24,6 @@ namespace TermProject.Models
         [StringLength(11, ErrorMessage = "Cell phone number has a maximum of 11 numbers")]
         [Display(Name = "Phone Number")]
         public string? Cell { get; set; }
+
     }
 }

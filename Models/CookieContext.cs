@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TermProject.Models
 {
@@ -6,6 +7,7 @@ namespace TermProject.Models
     {
         public CookieContext(DbContextOptions<CookieContext> options) : base(options) { }
         public DbSet<Members> Membership { get; set; }
+        public DbSet<MoodEntry> MoodEntries { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -32,6 +34,31 @@ namespace TermProject.Models
                     Email = "ennis@gmail.nmc.edu"
                 }
             );
+            modelBuilder.Entity<MoodEntry>().HasData(
+                new MoodEntry
+                {
+                    Id= 1,
+                    Mood = "Sad",
+                    Notes = "Today was a tough day",
+                    MembersId = 1,
+                },
+                new MoodEntry
+                {
+                    Id= 2,
+                    Mood = "Happy",
+                    Notes = "Today was a great day",
+                    MembersId = 2,
+                },
+                new MoodEntry
+                {
+                    Id = 3,
+                    Mood = "Okay",
+                    Notes = "Today was neutral",
+                    MembersId = 3,
+                   
+                }
+            );
         }
+
     }
 }

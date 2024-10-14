@@ -1,6 +1,6 @@
 ﻿body {
     font-family: 'Sans Serif Collection';
-    background-color: cadetblue;
+    background-color: #5b93b6;
     color: gainsboro;
 }
 a {
@@ -16,13 +16,16 @@ a:hover{
     color: cornflowerblue;
 }
 .nav-link:hover {
-    color: cadetblue;
+    color: #5b93b6;
     background-color: white;
     text-decoration: none;
-    border-radius:10px;
+    border-radius: 10px;
 }
-.nav-link{
-    color: cadetblue !important;
+.nav-link {
+    color: black;
     font-size:1.3em;
+}
+.table {
+    color: aliceblue;
 }
 
