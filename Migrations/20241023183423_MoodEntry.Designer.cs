@@ -12,14 +12,14 @@ using TermProject.Models;
 namespace TermProject.Migrations
 {
     [DbContext(typeof(CookieContext))]
-    [Migration("20241014002027_MoodTable")]
-    partial class MoodTable
+    [Migration("20241023183423_MoodEntry")]
+    partial class MoodEntry
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.33")
+                .HasAnnotation("ProductVersion", "6.0.35")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -37,8 +37,8 @@ namespace TermProject.Migrations
                         .HasColumnType("nvarchar(11)");
 
                     b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
@@ -87,14 +87,16 @@ namespace TermProject.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<DateTime>("EntryDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime2")
+                        .HasColumnName("Entry Date");
 
                     b.Property<int>("MembersId")
                         .HasColumnType("int");
 
                     b.Property<string>("Mood")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<string>("Notes")
                         .IsRequired()
@@ -110,7 +112,7 @@ namespace TermProject.Migrations
                         new
                         {
                             Id = 1,
-                            EntryDate = new DateTime(2024, 10, 13, 0, 0, 0, 0, DateTimeKind.Local),
+                            EntryDate = new DateTime(2024, 10, 23, 0, 0, 0, 0, DateTimeKind.Local),
                             MembersId = 1,
                             Mood = "Sad",
                             Notes = "Today was a tough day"
@@ -118,7 +120,7 @@ namespace TermProject.Migrations
                         new
                         {
                             Id = 2,
-                            EntryDate = new DateTime(2024, 10, 13, 0, 0, 0, 0, DateTimeKind.Local),
+                            EntryDate = new DateTime(2024, 10, 23, 0, 0, 0, 0, DateTimeKind.Local),
                             MembersId = 2,
                             Mood = "Happy",
                             Notes = "Today was a great day"
@@ -126,7 +128,7 @@ namespace TermProject.Migrations
                         new
                         {
                             Id = 3,
-                            EntryDate = new DateTime(2024, 10, 13, 0, 0, 0, 0, DateTimeKind.Local),
+                            EntryDate = new DateTime(2024, 10, 23, 0, 0, 0, 0, DateTimeKind.Local),
                             MembersId = 3,
                             Mood = "Okay",
                             Notes = "Today was neutral"
@@ -136,12 +138,17 @@ namespace TermProject.Migrations
             modelBuilder.Entity("TermProject.Models.MoodEntry", b =>
                 {
                     b.HasOne("TermProject.Models.Members", "Members")
-                        .WithMany()
+                        .WithMany("MoodEntrys")
                         .HasForeignKey("MembersId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Members");
+                });
+
+            modelBuilder.Entity("TermProject.Models.Members", b =>
+                {
+                    b.Navigation("MoodEntrys");
                 });
 #pragma warning restore 612, 618
         }
